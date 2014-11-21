@@ -14,5 +14,10 @@ Zerofox is open source. If you'd like to contribute, feel free to open or commen
 
 Pull requests welcome!
 
+## Acknowledgments
+Thanks to:
+
+* Last Call Media for their [World Issues Iconset](https://www.iconfinder.com/iconsets/world-issues), where Zerofox's globe icon is from.
+
 ## License
 This is free software, &copy; 2014 Fred Wenzel and licensed under an MIT license. For more information, read the file ``LICENSE``.
