@@ -16,8 +16,8 @@ exports.main = function(options, callbacks) {
 
   /** Toolbar button. */
   var button = ToggleButton({
-    id: 'zerofox-btn',
-    label: 'Zerofox',
+    id: 'ciaociao-btn',
+    label: 'Ciaociao',
     icon: {
       '16': self.data.url('img/icon-16.png'),
       '32': self.data.url('img/icon-32.png'),
