@@ -3,6 +3,8 @@ by Fred Wenzel ``<fwenzel@mozilla.com>``
 
 Zerofox is a Bonjour/Zeroconf service discovery add-on for Firefox. It adds a button to the toolbar that'll show you known web servers around your local network -- for instance, your printer or router might publish their config pages that way.
 
+![](https://raw.githubusercontent.com/fwenzel/zerofox/master/screenshot.png)
+
 ## Known Caveats
 Zerofox currently **only works on Mac OS X**, because it uses the ``dns-sd`` utility to discover the services in question. In the future, maybe it should just do the "Bonjour dance" in JavaScript. Interested in writing a patch?
 
