@@ -1,0 +1,34 @@
+body {
+    font-family: sans-serif;
+    font-size: 100%;
+}
+
+ul {
+    list-style: none inside;
+    margin: 0;
+    padding: 0 0 0 1em;
+}
+
+li {
+    background-image: url(../img/icon-16.png);
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    background-size: 16px auto;
+    padding: 2px 0 2px 24px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (-o-min-device-pixel-ratio: 3/2),
+    only screen and (min--moz-device-pixel-ratio: 1.5),
+    only screen and (min-device-pixel-ratio: 1.5) {
+        li { background-image:url(../img/icon-32.png); }
+}
+
+a,
+a:visited {
+    color: #000;
+    display: block;
+    padding: 4px;
+}
+a:hover {
+    text-decoration: none;
+}

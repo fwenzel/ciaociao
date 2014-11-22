@@ -1,0 +1,12 @@
+{
+  "title": "Zerofox",
+  "name": "zerofox",
+  "id": "jid1-kJ21znNS87DqHQ",
+  "description": "A Bonjour/Zeroconf discovery add-on (for OS X).",
+  "author": "Fred Wenzel <fwenzel@mozilla.com>",
+  "license": "MIT",
+  "version": "1.0",
+  "permissions": {
+    "private-browsing": true
+  }
+}
