@@ -9,7 +9,7 @@ Zerofox is a Bonjour/Zeroconf service discovery add-on for Firefox. It adds a bu
 Zerofox currently **only works on Mac OS X**, because it uses the ``dns-sd`` utility to discover the services in question. In the future, maybe it should just do the "Bonjour dance" in JavaScript. Interested in writing a patch?
 
 ## Installing
-Zerofox will be available on the [Mozilla Add-ons website](#). You can install it with Firefox by simply pressing the Install button there.
+Zerofox is available on the [Mozilla Add-ons website](https://addons.mozilla.org/en-US/firefox/addon/zerofox/). You can install it with Firefox by simply pressing the Install button there.
 
 ## Contributing
 Zerofox is open source. If you'd like to contribute, feel free to open or comment on an [Issue on Github](https://github.com/fwenzel/zerofox/issues).
