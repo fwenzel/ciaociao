@@ -1,7 +1,5 @@
-# Zerofox Add-on
+# ![](https://raw.githubusercontent.com/fwenzel/zerofox/master/globe.png) Zerofox Add-on
 by Fred Wenzel ``<fwenzel@mozilla.com>``
-
-![](https://raw.githubusercontent.com/fwenzel/zerofox/master/globe.png)
 
 Zerofox is a Bonjour/Zeroconf service discovery add-on for Firefox. It adds a button to the toolbar that'll show you known web servers around your local network -- for instance, your printer or router might publish their config pages that way.
 
