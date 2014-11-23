@@ -47,13 +47,13 @@ exports.main = function(options, callbacks) {
   });
 
 
-
   /**
    * Show panel with (previously discovered) services.
    */
   function openPanel(state) {
     if (!state.checked) return;
 
+    panel.port.emit('flush');
     discoverServices();
 
     panel.show({
@@ -68,14 +68,13 @@ exports.main = function(options, callbacks) {
   function discoverServices() {
     // Shell out to DNS-SD
     var dnssd = child_process.spawn('/usr/bin/dns-sd', ['-Z', '_http._tcp']);
-    // Don't let this run longer than 3 seconds.
+
+    // Don't let this run longer than a few seconds.
     timers.setTimeout(function() {
       try {
         dnssd.kill();
       } catch(e) {}
-    }, 2000);
-
-    var found = [];  // Hold on to found hosts.
+    }, 5000);
 
     dnssd.stdout.on('data', function(data) {
       /*
@@ -94,8 +93,7 @@ exports.main = function(options, callbacks) {
 
         //console.log(matched[1] + ' -- ' + matched[3] + ':' + matched[2]);
 
-        // Add to found hosts.
-        // Fix ASCII escapes.
+        // Fix ASCII escapes, such as \032 for <space>.
         var name = matched[1].replace(/\\(\d+)/, function(match, grp) {
           return String.fromCharCode(parseInt(grp, 10));
         });
@@ -104,13 +102,13 @@ exports.main = function(options, callbacks) {
           host += ':' + matched[2];
         }
 
-        found.push([name,  host]);
+        // Send to frontend as we go.
+        panel.port.emit('result', [name, host]);
       });
     });
 
     dnssd.on('close', function() {
-      panel.port.emit('results', found);
-      //console.log(found);
+      panel.port.emit('finish');
     });
   }
 
