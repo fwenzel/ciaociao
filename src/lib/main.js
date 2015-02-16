@@ -6,6 +6,8 @@ var system = require('sdk/system');
 var tabs = require('sdk/tabs');
 var timers = require('sdk/timers');
 
+var utils = require('./utils');
+
 
 exports.main = function(options, callbacks) {
   // XXX this only works on OS X for now.
@@ -91,12 +93,10 @@ exports.main = function(options, callbacks) {
         var matched = l.match(hostmatch);
         if (!matched) return;
 
-        //console.log(matched[1] + ' -- ' + matched[3] + ':' + matched[2]);
-
         // Fix ASCII escapes, such as \032 for <space>.
-        var name = matched[1].replace(/\\(\d+)/, function(match, grp) {
-          return String.fromCharCode(parseInt(grp, 10));
-        });
+        var name = utils.deEscapify(matched[1]);
+
+        // Build URL.
         var host = 'http://' + matched[3];
         if (matched[2] !== '80') {  // Add port if not default.
           host += ':' + matched[2];
