@@ -1,17 +1,14 @@
 var { ToggleButton } = require('sdk/ui/button/toggle');
-var child_process = require('sdk/system/child_process');
 var panels = require('sdk/panel');
 var self = require('sdk/self');
-var system = require('sdk/system');
 var tabs = require('sdk/tabs');
-var timers = require('sdk/timers');
 
-var utils = require('./utils');
+var zeroconf = require('./zeroconf');
 
 
 exports.main = function(options, callbacks) {
-  // XXX this only works on OS X for now.
-  if (system.platform !== 'darwin') {
+  // On a platform with neither dnssd nor avahi-browse, we're SOL.
+  if (!zeroconf.isSupportedPlatform()) {
     return;
   }
 
@@ -23,6 +20,7 @@ exports.main = function(options, callbacks) {
     icon: {
       '16': self.data.url('img/icon-16.png'),
       '32': self.data.url('img/icon-32.png'),
+      '48': self.data.url('img/icon-48.png'),
       '64': self.data.url('img/icon-64.png')
     },
     contextMenu: true,
@@ -56,59 +54,10 @@ exports.main = function(options, callbacks) {
     if (!state.checked) return;
 
     panel.port.emit('flush');
-    discoverServices();
+    zeroconf.discover(panel);
 
     panel.show({
       position: button
-    });
-  }
-
-
-  /**
-   * Discover local web services through dns-sd.
-   */
-  function discoverServices() {
-    // Shell out to DNS-SD
-    var dnssd = child_process.spawn('/usr/bin/dns-sd', ['-Z', '_http._tcp']);
-
-    // Don't let this run longer than a few seconds.
-    timers.setTimeout(function() {
-      try {
-        dnssd.kill();
-      } catch(e) {}
-    }, 5000);
-
-    dnssd.stdout.on('data', function(data) {
-      /*
-      Valid result looks something like this:
-
-      [...]
-      My\032Printer._http._tcp                 SRV     0 0 80 somehostname.local. ; Replace with unicast FQDN of target host
-      */
-
-      // Fish out instance names.
-      var lines = data.split('\n');
-      var hostmatch = /^(\S+)\._http\._tcp.*SRV\s+\d \d (\d+) (\S+)\. ;.*/
-      lines.forEach(function(l) {
-        var matched = l.match(hostmatch);
-        if (!matched) return;
-
-        // Fix ASCII escapes, such as \032 for <space>.
-        var name = utils.deEscapify(matched[1]);
-
-        // Build URL.
-        var host = 'http://' + matched[3];
-        if (matched[2] !== '80') {  // Add port if not default.
-          host += ':' + matched[2];
-        }
-
-        // Send to frontend as we go.
-        panel.port.emit('result', [name, host]);
-      });
-    });
-
-    dnssd.on('close', function() {
-      panel.port.emit('finish');
     });
   }
 

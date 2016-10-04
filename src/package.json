@@ -1,11 +1,12 @@
 {
   "title": "Ciaociao",
   "name": "ciaociao",
-  "id": "jid1-kJ21znNS87DqHQ",
+  "id": "jid1-kJ21znNS87DqHQ@jetpack",
   "description": "A Bonjour/Zeroconf discovery add-on (for OS X).",
   "author": "Fred Wenzel <fwenzel@mozilla.com>",
   "license": "MIT",
-  "version": "1.3",
+  "version": "1.4.0",
+  "main": "lib/main.js",
   "icon": {
     "16": "data/img/icon-16.png",
     "32": "data/img/icon-32.png",
