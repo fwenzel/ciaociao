@@ -1,4 +1,4 @@
-var utils = require('./utils');
+const utils = require('../lib/utils');
 
 exports['test deEscapify'] = function(assert) {
   assert.ok(utils.deEscapify('My\\032name.') === 'My name.', 'One escape ok.');

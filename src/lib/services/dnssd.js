@@ -35,18 +35,18 @@ function parseDnssd(data) {
   */
 
   // Fish out instance names.
-  var lines = data.split('\n');
-  var hostmatch = /^(\S+)\._http\._tcp\s+SRV\s+\d \d (\d+) (\S+)\. ;.*/
-  var parsed = [];
+  let lines = data.split('\n');
+  let hostmatch = /^(\S+)\._http\._tcp\s+SRV\s+\d \d (\d+) (\S+)\. ;.*/
+  let parsed = [];
   lines.forEach(function(l) {
-    var matched = l.match(hostmatch);
+    let matched = l.match(hostmatch);
     if (!matched) return;
 
     // Fix ASCII escapes, such as \032 for <space>.
-    var name = utils.deEscapify(matched[1]);
+    let name = utils.deEscapify(matched[1]);
 
     // Build URL.
-    var host = 'http://' + matched[3];
+    let host = 'http://' + matched[3];
     if (matched[2] !== '80') {  // Add port if not default.
       host += ':' + matched[2];
     }

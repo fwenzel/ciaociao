@@ -36,19 +36,19 @@ function parseAvahi(data, panel) {
   */
 
   // Fish out instance names.
-  var lines = data.split('\n');
-  var parsed = [];
+  let lines = data.split('\n');
+  let parsed = [];
   lines.forEach(function(l) {
     if (l.slice(0, 1) !== '=') return;
 
-    var matched = l.split(';');
+    let matched = l.split(';');
     if (matched.length < 10) return;
 
     // Fix ASCII escapes, such as \032 for <space>.
-    var name = utils.deEscapify(matched[3]);
+    let name = utils.deEscapify(matched[3]);
 
     // Build URL.
-    var host = 'http://' + matched[6];
+    let host = 'http://' + matched[6];
     if (matched[8] !== '80') {  // Add port if not default.
       host += ':' + matched[8];
     }
