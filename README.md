@@ -6,7 +6,7 @@ Ciaociao (formerly Zerofox) is a Bonjour/Zeroconf service discovery add-on for F
 ![](https://raw.githubusercontent.com/fwenzel/ciaociao/master/screenshot.png)
 
 ## Known Caveats
-Ciaociao currently **only works on Mac OS X**, because it uses the ``dns-sd`` utility to discover the services in question. In the future, maybe it should just do the "Bonjour dance" in JavaScript. Interested in writing a patch?
+Ciaociao currently **only works on Mac OS X and Linux**, because it uses the ``dns-sd`` or ``avahi-browse`` utilities to discover the services in question. In the future, if I can find out how, I'll be happy to add Windows support.
 
 ## Installing
 Ciaociao is available on the [Mozilla Add-ons website](https://addons.mozilla.org/en-US/firefox/addon/ciaociao/). You can install it with Firefox by simply pressing the Install button there.
