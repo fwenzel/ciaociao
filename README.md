@@ -20,4 +20,4 @@ Thanks to:
 * Last Call Media for their [World Issues Iconset](https://www.iconfinder.com/iconsets/world-issues), where Ciaociao's globe icon is from.
 
 ## License
-This is free software, &copy; 2014-16 Fred Wenzel and licensed under an MIT license. For more information, read the file ``LICENSE``.
+This is free software, &copy; 2014-today Fred Wenzel and licensed under an MIT license. For more information, read the file ``LICENSE``.
